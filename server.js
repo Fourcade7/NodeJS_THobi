@@ -35,7 +35,8 @@ async function getLastCard(){
         const last_name=data.data[0].customer.surname;
         const mobile=data.data[0].customer.phone;
 
-        newCustomer(contact_id, type, first_name, last_name, mobile);
+        //newCustomer(contact_id, type, first_name, last_name, mobile);
+        newContragent(`${first_name} ${last_name}`, mobile)
         lastCardId=data.data[0].id;
 
     }else{
@@ -53,6 +54,31 @@ async function getLastCard(){
       console.log(e.message) 
   }
 
+}
+
+
+async function newContragent(name,phone) {
+  const data = 
+        {
+          "name":name,
+          "phone":phone
+        };
+  
+  try{
+      const response = await fetch("https://api.moysklad.ru/api/remap/1.2/entity/counterparty", {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer 995539205df3e4ffa965f744af89ae1e7851b1b0",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+    console.log("Server javobi:", result);
+  }catch(e){
+    console.log(e.error)
+  }
 }
 
 async function newCustomer(contact_id,type,first_name,last_name,mobile) {
