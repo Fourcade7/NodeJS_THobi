@@ -1,4 +1,5 @@
 import express from "express"
+import { getLastRetaildemand } from "./amountCard.js";
 
 const app = express();
 const PORT = 3000;
@@ -8,7 +9,7 @@ app.use(express.json());
 
 let lastCardId="";
 
-
+//TIROX
 async function getLastCard(){
 
 
@@ -36,7 +37,7 @@ async function getLastCard(){
         const mobile=data.data[0].customer.phone;
 
         //newCustomer(contact_id, type, first_name, last_name, mobile);
-        newContragent(`${first_name} ${last_name}`, mobile)
+        newContragent(contact_id,`${first_name} ${last_name}`, mobile)
         lastCardId=data.data[0].id;
 
     }else{
@@ -56,12 +57,13 @@ async function getLastCard(){
 
 }
 
-
-async function newContragent(name,phone) {
+//MOYSKLAD
+async function newContragent(id,name,phone) {
   const data = 
         {
           "name":name,
-          "phone":phone
+          "phone":id,
+          "code":phone
         };
   
   try{
@@ -80,7 +82,7 @@ async function newContragent(name,phone) {
     console.log(e.error)
   }
 }
-
+//HOBI
 async function newCustomer(contact_id,type,first_name,last_name,mobile) {
   const data = 
         {
@@ -115,10 +117,11 @@ async function newCustomer(contact_id,type,first_name,last_name,mobile) {
 
 function myJob() {
   getLastCard()
-  console.log("Har 3 sekundda ishlayapti (funksiya alohida)");
+  getLastRetaildemand();
+  console.log("Har 5 sekundda ishlayapti (funksiya alohida)");
 }
 
-setInterval(myJob, 3000);
+setInterval(myJob, 5000);
 
 
 
