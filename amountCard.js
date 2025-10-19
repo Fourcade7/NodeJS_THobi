@@ -10,7 +10,8 @@ async function getLastRetaildemand() {
         method:"GET",
         headers:{
          //"X-API-Key": "392b523f48da5ed49425d6d874517483"
-         "Authorization": "Bearer  995539205df3e4ffa965f744af89ae1e7851b1b0"
+         //"Authorization": "Bearer  995539205df3e4ffa965f744af89ae1e7851b1b0"
+         "Authorization": "Bearer  2bbecce0d5f0cd46e230d492f43079905814beda"
         }
       });      // GET request
       const data = await response.json(); 
@@ -59,7 +60,7 @@ async function addNewAmount(id,amount,owner) {
       const response = await fetch(`https://api.digitalwallet.cards/api/v2/cards/${id}/add-transaction-amount`, {
       method: "POST",
       headers: {
-        "X-API-Key": "392b523f48da5ed49425d6d874517483",
+        "X-API-Key": "a39d742f74273491ffd081a034eedd8f",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),

@@ -3,7 +3,7 @@ import { getLastRetaildemand } from "./amountCard.js";
 
 const app = express();
 const PORT = 3000;
-// JSON body parsing uchun
+
 app.use(express.json());
 
 
@@ -116,9 +116,9 @@ async function newCustomer(contact_id,type,first_name,last_name,mobile) {
 //newCustomer();
 
 function myJob() {
-  getLastCard()
+  //getLastCard()
   getLastRetaildemand();
-  console.log("Har 5 sekundda ishlayapti (funksiya alohida)");
+  console.log("every 5 second ");
 }
 
 setInterval(myJob, 5000);
