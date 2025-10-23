@@ -8,17 +8,56 @@ app.use(express.json());
 
 
 let lastCardId="";
+let lastCustomerId="";
 
 //TIROX
-async function getLastCard(){
+async function getLastCustomer(){
 
 
   try{
 
-    const response = await fetch(`https://api.digitalwallet.cards/api/v2/cards/`,{
+    const response = await fetch(`https://api.digitalwallet.cards/api/v2/customers`,{
       method:"GET",
       headers:{
-       "X-API-Key": "392b523f48da5ed49425d6d874517483"
+       "X-API-Key": "a39d742f74273491ffd081a034eedd8f"
+       //"Authorization": "Bearer  0e4a364118a70d4ba0a2dd233a47b09fb28225e7"
+      }
+    });      // GET request
+    const data = await response.json();
+   if(data?.data?.length>0){
+    if(lastCustomerId!==data.data[0].id){
+        
+        
+        const contact_id=data.data[0].id;
+        console.log(contact_id)
+        //newContragent(contact_id,`${first_name} ${last_name}`, mobile)
+        lastCustomerId=data.data[0].id;
+        getLastCard(contact_id);
+
+    }else{
+      console.log("another customer id")
+    }
+    
+   }else{
+      console.log("customer list empty")
+   }
+    
+
+
+
+  }catch(e){
+      console.log(e.message) 
+  }
+
+}
+//TIROX
+async function getLastCard(id){
+  try{
+
+    const response = await fetch(`https://api.digitalwallet.cards/api/v2/cards/?itemsPerPage=1000&customerId=${id}`,{
+      method:"GET",
+      headers:{
+       "X-API-Key": "a39d742f74273491ffd081a034eedd8f"
        //"Authorization": "Bearer  0e4a364118a70d4ba0a2dd233a47b09fb28225e7"
       }
     });      // GET request
@@ -70,7 +109,7 @@ async function newContragent(id,name,phone) {
       const response = await fetch("https://api.moysklad.ru/api/remap/1.2/entity/counterparty", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer 995539205df3e4ffa965f744af89ae1e7851b1b0",
+        "Authorization": "Bearer ef89f7033a291007f08df842eb0772b219d29247",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
@@ -118,6 +157,7 @@ async function newCustomer(contact_id,type,first_name,last_name,mobile) {
 function myJob() {
   //getLastCard()
   getLastRetaildemand();
+  getLastCustomer();
   console.log("every 5 second ");
 }
 
