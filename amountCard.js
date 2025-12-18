@@ -11,7 +11,8 @@ async function getLastRetaildemand() {
         headers:{
          //"X-API-Key": "392b523f48da5ed49425d6d874517483"
          //"Authorization": "Bearer  995539205df3e4ffa965f744af89ae1e7851b1b0"
-         "Authorization": "Bearer  ef89f7033a291007f08df842eb0772b219d29247"
+         //"Authorization": "Bearer  ef89f7033a291007f08df842eb0772b219d29247"
+         "Authorization": "Bearer  a784ce68cdcc540208ec9553e28d5f0c6432d63b"
         }
       });      // GET request
       const data = await response.json(); 

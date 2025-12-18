@@ -109,7 +109,8 @@ async function newContragent(id,name,phone) {
       const response = await fetch("https://api.moysklad.ru/api/remap/1.2/entity/counterparty", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer ef89f7033a291007f08df842eb0772b219d29247",
+        //"Authorization": "Bearer ef89f7033a291007f08df842eb0772b219d29247",
+        "Authorization": "Bearer a784ce68cdcc540208ec9553e28d5f0c6432d63b",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
